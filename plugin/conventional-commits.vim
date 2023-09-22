@@ -19,7 +19,7 @@ augroup END
 
 fun! s:complete_commit_types(findstart, base)
     if a:findstart
-        " locate the start of the word
+        " Locate the start of the word
         let line = getline('.')
         let start = col('.') - 1
         while start > 0 && line[start - 1] =~ '\a'
@@ -51,4 +51,4 @@ fun! s:smart_tab()
     else
         return "\<C-X>\<C-U>"
     endif
-endfunction
+endfun
