@@ -13,7 +13,7 @@ let s:commit_types = [
   \ ]
 
 augroup conventional
-  au FileType gitcommit 1 | startinsert | set completefunc=s:complete_commit_types | inoremap <Tab> <C-R>=<sid>smart_tab()<CR>
+  au FileType gitcommit 1 | startinsert! | set completefunc=s:complete_commit_types | inoremap <Tab> <C-R>=<sid>smart_tab()<CR>
   au FileType gitcommit inoreabbrev <buffer> BB BREAKING CHANGE:
 augroup END
 
