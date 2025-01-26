@@ -38,17 +38,11 @@ fun! s:complete_commit_types(findstart, base)
 endfun
 
 fun! s:smart_tab()
-  " Empty commit message: tab -> pop up autocomplete
-  if line(".") == 1 && col(".") == 1 && col("$") == 1
+  " Empty commit message/first line contains some characters tab
+  " => pop up autocomplete/complete the started word right away
+  if line(".") == 1 && getline('.') =~ '\v^[a-z]{0,7}$'
     return "\<C-X>\<C-U>"
-  " Current line consists of whitespace only -> tab
-  elseif strpart(getline('.'), 0, col('.')-1) =~ '^\s*$'
-    return "\<Tab>"
-  " Commit type is in there -> tab
-  elseif getline('.') =~ '^[a-z]*:'
-    return "\<Tab>"
-  " Complete the started word
   else
-    return "\<C-X>\<C-U>"
+    return "\<Tab>"
   endif
 endfun
